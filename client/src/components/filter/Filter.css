@@ -1,0 +1,154 @@
+.Filter{
+  margin-left: 50px;
+  width: 320px; 
+  height: 1014px; 
+  background: white;
+  border: 1px #D9D9D9 solid;
+}
+.filter_title{
+ display: flex;
+ justify-content: center;
+  font-size: 20px;
+
+}
+
+.title {
+  margin-left: 20px;
+  /* color: #000000;  */
+  font-size: 18px;
+}
+.slider {
+  margin-left: 10%;
+  width: 80%;
+  height: 4px;
+  border-radius: 10px;
+  background-color: #cdd9ed;
+  margin-top: 20px;
+}
+
+.thumb {
+    margin-top: -7px;
+    width: 9px;
+    height: 9px;
+    cursor: grab;
+    background: #fff;
+    border-radius: 50%;
+    border: 5px solid #275efe;
+}
+
+.slider .track-1 {
+  background: #275efe;
+  height: 5px;
+  border-radius: 50px;
+}
+
+.value-range {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.value {
+  /* flex: 1; */
+  text-align: center;
+  border: 1px solid #D9D9D9;
+  width: 100px;
+  height: 27px;
+  border-radius: 5px;
+
+}
+
+
+
+.Covered {
+  font-family: Arial, sans-serif;
+  /* border: 1px solid #ccc; */
+  /* width: 300px; */
+}
+.Covered label {
+  display: block; 
+  /* margin-bottom: 4px; */
+  margin-left: 30px;
+ 
+}
+
+.Covered label input[type="checkbox"] {
+  margin-right: 10px; 
+  transform: scale(1.4); 
+}
+
+
+
+.Facilities {
+  font-family: Arial, sans-serif;
+  /* border: 1px solid #ccc; */
+  /* width: 300px; */
+}
+
+.Facilities label {
+  display: block; 
+  margin-left: 30px;
+
+}
+.Facilities label input[type="checkbox"] {
+  margin-right: 10px; 
+  transform: scale(1.4); 
+}
+
+
+
+
+.select-container {
+  margin: 20px;
+}
+/* Стили для элемента выбора */
+.select-container select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.select-container option:first-child {
+  color: #888; /* Серый цвет текста */
+}
+
+
+.Choose_city {
+  margin: 20px;
+}
+
+.select-city {
+  display: inline-block; 
+   width: 100%;
+
+
+}
+
+.select_city {
+  width: 100%;
+
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.Continue_reset{
+  margin-left: 30px;
+  margin-right: 40px;
+
+}
+
+.Сontinue_button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1BA90F;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

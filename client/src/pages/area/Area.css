@@ -1,0 +1,12 @@
+.AreaList{
+    display: flex;
+    gap: 80px;
+}
+
+
+.AreaItem{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+ 

@@ -1,0 +1,72 @@
+.FieldCard{
+  display: flex;
+}
+/* .Field_img{
+  width: 300px;
+  height: 250px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px 0 0 10px;
+} */
+.Field-img{
+  width: 300px;
+  height: 248px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px 0 0 10px;
+}
+.Field_body{
+  padding-left: 25px;
+  box-sizing: border-box; 
+  width: 600px;
+height: 250px;
+border: 1px solid #D9D9D9;
+border-radius: 0 10px 10px 0;
+}
+
+.Field_title{
+  font-size: 20px;
+}
+.Field_address{
+  font-size: 13px;
+  font-weight: 200;
+}
+.Field_service{
+  display: flex;
+
+}
+.Field_service p{
+  border: 1px solid #040000;
+  border-radius: 5px;
+  font-size: 11px;
+ padding: 2px;
+  margin-right: 40px;
+}
+.Field_price{
+color: #767676;
+ font-size: 14px;
+  /* font-family: 'Kanit'; */
+   font-weight: '400';
+}
+.Field_button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1BA90F;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Field_button:hover {
+  background-color: #31cd23;
+}
+
+
+
+.Field_rating{
+  margin-top: -10px;
+  width: 95%;
+  display: flex;
+  justify-content: flex-end;
+}

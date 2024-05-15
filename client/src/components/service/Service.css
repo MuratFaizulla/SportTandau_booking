@@ -1,0 +1,48 @@
+.ServiceList {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 50px;
+}
+.ServiceList_title {
+  display: flex;
+justify-content: center;
+  color: #748cb8;
+  font-size: 32px;
+  font-family: 'Inter'; 
+  font-weight: 700; 
+  margin-bottom: 50px;
+
+}
+
+.service-item-container {
+  position: relative;
+  width: 120px;
+  height: 300px;
+  border-radius: 25px;
+  border: 1px solid #3785CD;
+  background: white;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+.vector {
+  width: 90px;
+  border-top: 2px solid #3785CD;
+  position: absolute;
+  top: 20%;
+}
+.service-item-text {
+  color: #3C5A99;
+  font-size: 22px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 55%;
+}

@@ -1,0 +1,75 @@
+.Lawncard{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+.qwer{
+  display: flex;
+  justify-content: flex-end;
+margin: 50px 20px 50px 20px;
+text-decoration: none;
+
+color: #5E6282;
+
+}
+
+.card_destination_rome{
+  position:static;
+z-index: 2;
+ }
+.image{
+  background-color: #5E6282;
+  width: 352px;
+height: 300px;
+border-radius: 25px 25px 0px 0px;
+}
+.img{
+  border-radius: 25px 25px 0px 0px;
+
+  width: 352px;
+  height: 300px;
+}
+.content{
+  width: 350px;
+height: 150px;
+flex-shrink: 0;
+border-radius: 0px 0px 25px 25px;
+background: var(--white, #FFF);
+border: 1px solid #D9D9D9;
+}
+.destination_title{
+  margin-left: 20px;
+  color: var(--TEXT-CLR, #5E6282);
+font-family: 'Poppins' sans-serif;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 124.5%; /* 22.41px */
+}
+
+.destination_title_2{
+color: #5E6282; 
+font-size: 13px;
+font-family: 'Poppins'sans-serif;
+font-weight: 200; 
+  word-wrap: break-word;
+
+}
+.destination_text{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top:-20px ;
+  /* margin-left: 20px; */
+  color: var(--TEXT-CLR, #5E6282);
+  font-family: 'Poppins'sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
+.sports_grounds{
+display: flex;
+justify-content: center;
+color: #0E1F3F;
+font-size: 28px;
+}
