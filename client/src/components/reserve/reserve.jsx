@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
-// import { Toaster, toast } from 'sonner'
 import "./reserve.css";
 
 const DateAndTimeSelector = ({ fieldId }) => {
@@ -14,7 +13,7 @@ const DateAndTimeSelector = ({ fieldId }) => {
   const [isBooked, setIsBooked] = useState(false);
   const [bookings, setBookings] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
-
+  const [error, setError] = useState(null);
   
   const { data } = useFetch("/bookings/");
 
@@ -39,10 +38,16 @@ const DateAndTimeSelector = ({ fieldId }) => {
     });
   };
 
+  const handleTimeSelect = (startTime, endTime, index) => {
+    setSelectedStartTime(startTime);
+    setSelectedEndTime(endTime);
+    setSelectedSlot(index);
+    setIsBooked(false); // Сбрасываем статус бронирования
+    setError(null); // Сбрасываем ошибку
+  };
 
-
-  useEffect(() => {
-    if (isBooked && selectedDate && selectedStartTime && selectedEndTime) {
+  const handleBooking = () => {
+    if (selectedStartTime !== "" && selectedEndTime !== "") {
       const bookingData = {
         userId: user._id,
         fieldId: fieldId,
@@ -50,7 +55,6 @@ const DateAndTimeSelector = ({ fieldId }) => {
         startTime: selectedStartTime,
         endTime: selectedEndTime,
       };
-      console.log(bookingData);
       fetch("/bookings/", {
         method: "POST",
         headers: {
@@ -60,43 +64,32 @@ const DateAndTimeSelector = ({ fieldId }) => {
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Failed to create booking");
+            throw new Error("Брондау жасалмады");
           }
           return response.json();
         })
         .then((data) => {
-          
-          console.log("Booking created:", data);
-          setIsBooked(true); 
+          console.log("Брондау жасалды:", data);
+          setIsBooked(true);
+          setSelectedStartTime("");
+          setSelectedEndTime("");
+          setSelectedSlot(null);
+          // Обновляем данные о бронированиях только после успешного бронирования
+          fetch("/bookings/")
+            .then((response) => response.json())
+            .then((data) => {
+              setBookings(data);
+            })
+            .catch((error) => {
+              console.error("Брондауларды алу қатесі:", error);
+            });
         })
         .catch((error) => {
-          console.error("Error creating booking:", error);
+          console.error("Брондау жасау қатесі:", error);
+          setError("Брондау жасалмады. Қайталап көріңіз.");
         });
-    }
-  }, [
-    isBooked,
-    selectedDate,
-    selectedStartTime,
-    selectedEndTime,
-    user._id,
-    fieldId,
-  ]);
-
-  const handleTimeSelect = (startTime, endTime, index) => {
-    setSelectedStartTime(startTime);
-    setSelectedEndTime(endTime);
-    setSelectedSlot(index); // Устанавливаем выбранный слот
-
-    
-  };
-
-  const handleBooking = () => {
-    if (selectedStartTime !== "" && selectedEndTime !== "") {
-      const dateOnly = selectedDate.toISOString().split("T")[0];
-      console.log(`Вы забронировали ${dateOnly}`);
-      setIsBooked(true);
     } else {
-      console.log("Пожалуйста, выберите время");
+      setError("Уақыт аралығын таңдаңыз");
     }
   };
 
@@ -128,66 +121,49 @@ const DateAndTimeSelector = ({ fieldId }) => {
     { startTime: "23:00", endTime: "00:00" },
   ];
 
-  return (<div className="data">
-    <div className="date-time-selector">
-
-      <div className="calendar">
-        <h2>Выберите дату:</h2>
-        <DatePicker
-          inline
-          selected={selectedDate}
-          onChange={(date) => {
-            setSelectedDate(date);
-            const formattedDate = date.toISOString().split("T")[0];
-            console.log(formattedDate);
-          }}
-          minDate={new Date()}
-          dateFormat="yyyy-MM-dd"
-          placeholderText="Select date"
-        />
-      </div>
-
-      {selectedDate && (
-        <div>
-          <h2>Выберите время:</h2>
-          <div className="timeslots">
-            {times.map((time, index) => (
-              <button
-              className={`time-slot ${selectedSlot === index ? "selected" : ""}`}
-              key={index}
-              onClick={() => handleTimeSelect(time.startTime, time.endTime, index)}
-              disabled={isSlotBooked(time.startTime, time.endTime) || isTimePassed(time.startTime)}
-            >
-              {time.startTime} - {time.endTime}
-              {isSlotBooked(time.startTime, time.endTime) && <span>Забронировано</span>}
-            </button>
-            ))}
-          </div>
+  return (
+    <div className="data">
+      <div className="date-time-selector">
+        <div className="calendar">
+          <h2>Күнді таңдаңыз:</h2>
+          <DatePicker
+            inline
+            selected={selectedDate}
+            onChange={(date) => {
+              setSelectedDate(date);
+            }}
+            minDate={new Date()}
+            dateFormat="yyyy-MM-dd"
+            placeholderText="Select date"
+          />
         </div>
-      )}
-     </div>
+        {selectedDate && (
+          <div>
+            <h2>Уақытты таңдаңыз:</h2>
+            <div className="timeslots">
+              {times.map((time, index) => (
+                <button
+                  className={`time-slot ${selectedSlot === index ? "selected" : ""}`}
+                  key={index}
+                  onClick={() => handleTimeSelect(time.startTime, time.endTime, index)}
+                  disabled={isSlotBooked(time.startTime, time.endTime) || isTimePassed(time.startTime)}
+                >
+                  {time.startTime} - {time.endTime}
+                  {isSlotBooked(time.startTime, time.endTime) && <span>Брондалған</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
       <div>
-        <button className="button_booking" onClick={handleBooking}>Забронировать</button>
-        
+        {error && <p className="error-message">{error}</p>}
+        <button className="button_booking" onClick={handleBooking} disabled={isBooked}>
+          {isBooked ? "Брондалды" : "Брондау"}
+        </button>
       </div>
-      </div>
+    </div>
   );
 };
 
 export default DateAndTimeSelector;
-
-
-  // const isSlotBooked = (startTime, endTime) => {
-  //   return bookings.some((booking) => {
-  //     const formattedDate = booking.date.split('T')[0];
-  // console.log(formattedDate)
-  // console.log(selectedDate.toISOString().split('T')[0])
-  //     return (
-  //       booking.date.split('T')[0] ===selectedDate.toISOString().split('T')[0]&&
-  //       booking.startTime === startTime &&
-  //       booking.endTime === endTime &&
-  //       booking.userId === user._id &&
-  //       booking.fieldId === fieldId
-  //     );
-  //   });
-  // }; 

@@ -1,4 +1,4 @@
-import {  useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Loader from "../../components/Loader.jsx";
@@ -12,11 +12,9 @@ import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch.js";
 import DateAndTimeSelector from "../reserve/reserve.jsx";
 
-
 function Reservation() {
   const params = useParams();
   const [post, setPost] = useState({});
-
 
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -24,7 +22,6 @@ function Reservation() {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-
 
   const { data, loading, error } = useFetch(`/fields/find/${id}`);
   if (loading) {
@@ -42,7 +39,6 @@ function Reservation() {
     // console.log('Данные о площадках недоступны');
   }
 
-
   const handleClick = () => {
     if (user) {
       setOpenModal(true);
@@ -52,26 +48,23 @@ function Reservation() {
   };
 
   return (
-
     <div>
       <div className="name"> {data.name}</div>
       <div className="adress">{data.address}</div>
       <div className="photos">
-  {data.photos && data.photos.map((photo, index) => (
-    <img key={index} className='Field-img' src={photo} alt="VOLTA Arena" />
-  ))}
-</div>
-
-
+        {data.photos &&
+          data.photos.map((photo, index) => (
+            <img key={index} className="Field-img" src={photo} alt="Arena" />
+          ))}
+      </div>
 
       <div className="backend">
-
         <div className="about">
-
           <div className="title">
             <p>О поле</p>
-            <p><StarRating /></p>
-
+            <p>
+              <StarRating />
+            </p>
           </div>
 
           <div className="size">
@@ -100,7 +93,6 @@ function Reservation() {
           </div>
           <hr />
         </div>
-
 
         <div className="Serv">
           <div className="title">Удобства</div>
@@ -168,20 +160,20 @@ function Reservation() {
               </div>
             </div>
           </div>
-
-
         </div>
-
       </div>
 
       <div className="article-part">
-
-        {/* <Calendar /> */}
-        <button  className="button" onClick={handleClick}>Забронируйте  сейчас!</button>
-
-        {/* <DateAndTimeSelector setOpen={setOpenModal} fieldId={id}/> */}
-
-        {openModal && <DateAndTimeSelector setOpen={setOpenModal} fieldId={id} />}
+        <div className="button-container">
+          <button className="btn btn-primary" onClick={handleClick}>
+            Қазір брондаңыз!
+          </button>
+        </div>
+        {/* {openModal && <Calendar setOpen={setOpenModal} fieldId={id} />} */}
+        {/* <DateAndTimeSelector/> */}
+        {openModal && (
+          <DateAndTimeSelector setOpen={setOpenModal} fieldId={id} />
+        )}
 
         <ul className="article-tags-list">
           {post.tags &&
@@ -198,14 +190,8 @@ function Reservation() {
           newsId={params.id}
         />
       </div>
-
-
     </div>
-
-
   );
 }
 
 export default Reservation;
-
-

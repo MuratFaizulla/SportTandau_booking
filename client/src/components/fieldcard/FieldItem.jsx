@@ -18,12 +18,12 @@ const FieldItem = ({ post }) => {
                 <h3 className="Field_title" key={post._id}>{post.name}</h3>
                 <p className="Field_address">{post.address}</p>
                 <div className='Field_service'>
-                    <p> Возможна частичная предоплата </p>
+                    <p> Ішінара алдын ала төлеуге болады</p>
                     <p>{post.type}</p>
                 </div>
-                <p className="Field_price">{post.price} т час</p>
+                <p className="Field_price">{post.price} т сағатына</p>
                 <Link to={RESERVATION_PAGE_ROUTE.substring(0, RESERVATION_PAGE_ROUTE.length - 3) + post._id}>
-                    <button className="Field_button">Забронировать</button>
+                    <button className="Field_button">Әрі қарай</button>
                 </Link>
                 <div className="Field_rating"><StarRating /></div>
             </div>

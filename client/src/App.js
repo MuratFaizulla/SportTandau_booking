@@ -7,7 +7,7 @@ import { AuthContext } from './context/AuthContext';
 
 const App = () => {
   const location = useLocation();
-  const { user } = useContext(AuthContext); // Получаем информацию о пользователе из контекста аутентификации
+  const { user } = useContext(AuthContext); 
 
   useEffect(() => {
     window.scrollTo(0, 0);

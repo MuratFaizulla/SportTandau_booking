@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-
+import "./profile.css"
 
 const Profile = () => {
   const { user } = useContext(AuthContext);

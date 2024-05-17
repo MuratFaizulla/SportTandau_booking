@@ -6,11 +6,11 @@ import Sorttype from '../../components/sorting/Sorting';
 
 const Area = () => {
     const [fieldsData, setFieldsData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // Добавляем состояние загрузки
+    const [isLoading, setIsLoading] = useState(true); 
 
     const onDataReceived = (data) => {
         setFieldsData(data);
-        setIsLoading(false); // После получения данных устанавливаем isLoading в false
+        setIsLoading(false); 
     };
 
     return (
@@ -18,7 +18,7 @@ const Area = () => {
             <Filter />
             <div className='AreaItem'>
                 <Sorttype onDataReceived={onDataReceived} />
-                {isLoading ? ( // Если данные еще не пришли, показываем сообщение о загрузке
+                {isLoading ? ( 
                     <div>Loading...</div>
                 ) : (
                     fieldsData.map(post => (

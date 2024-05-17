@@ -6,16 +6,16 @@ import './Service.css';
 const ServiceList = () => {
     return (
         <>
-        <h2 className='ServiceList_title'>УСЛУГИ НА ПЛОЩАДКЕ</h2>
+        <h2 className='ServiceList_title'>АЛАҢДАҒЫ ҚЫЗМЕТТЕР</h2>
          <div className='ServiceList'>
-            <ServiceItem text="Администратор" />
-            <ServiceItem text="Раздевалки" />
-            <ServiceItem text="Душевые" />
-            <ServiceItem text="Парковка" />
+            <ServiceItem text="Әкімші" />
+            <ServiceItem text="Киінетін бөлмелер" />
+            <ServiceItem text="Душ бөлмесі." />
+            <ServiceItem text="Көлік тұрағы" />
             <ServiceItem text="Инвентарь" />
-            <ServiceItem text="Зона отдыха" />
-            <ServiceItem text="Кафе" />
-            <ServiceItem text="Трибуны" />
+            <ServiceItem text="Демалыс аймағы" />
+            <ServiceItem text="Дәмхана" />
+            <ServiceItem text="Трибуналар" />
         </div>
         </>
        

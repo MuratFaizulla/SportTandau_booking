@@ -13,11 +13,18 @@ import { AuthContext } from '../../context/AuthContext';
 import avatar from './user.jpg';
 
 const Header = () => {
-  const { user,logout  } = useContext(AuthContext);
- const [open,setOpen]=useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
 
-   const handleLogout = () => {
+  const handleLogout = () => {
     logout(); // Вызываем функцию logout при клике на кнопку
+  };
+
+  // Функция для автоматического закрытия меню через 5 секунд
+  const autoCloseMenu = () => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 5000);
   };
 
   return (
@@ -30,38 +37,41 @@ const Header = () => {
           <Link to={ABOUT_PAGE_ROUTE}>Біз туралы</Link>
         </div>
 
-          {user ? (
-            
-            <div className='avatar'>
-            <img src={avatar} alt='user' className="user-avatar" onClick={()=>setOpen(!open)} />
+        {user ? (
+          <div className='avatar'>
+            <img
+              src={avatar}
+              alt='user'
+              className="user-avatar"
+              onClick={() => {
+                setOpen(!open);
+                autoCloseMenu(); // Запускаем автоматическое закрытие меню
+              }}
+            />
             <p>{user.username}</p>
-            { open && (
-                <div className='custom-div'>
+            {open && (
+              <div className='custom-div'>
                 <ul>
-                <li onClick={() => { window.location.href = USER_PAGE_ROUTE; }}>Менің профилім</li>
-                <li onClick={() => { window.location.href =ABOUT_PAGE_ROUTE; }}>Менің брондарым</li>
-                <li onClick={handleLogout}>Шығу</li>
-                </ul> 
+                  <li onClick={() => { window.location.href = USER_PAGE_ROUTE; }}>Менің профилім</li>
+                  <li onClick={() => { window.location.href = ABOUT_PAGE_ROUTE; }}>Менің брондарым</li>
+                  <li onClick={handleLogout}>Шығу</li>
+                </ul>
               </div>
-              ) }
-            </div> 
-          ) : (
-            <div className="button-container">
-              <Link to={REGISTER_PAGE_ROUTE}>
-                <button className="button-primary">Тіркелу</button>
-              </Link>
-              <Link to={LOGIN_PAGE_ROUTE}>
-                <button className="button-secondary">Кіру</button>
-              </Link>
-            </div>
-          )}
+            )}
+          </div>
+        ) : (
+          <div className="button-container">
+            <Link to={REGISTER_PAGE_ROUTE}>
+              <button className="button-primary">Тіркелу</button>
+            </Link>
+            <Link to={LOGIN_PAGE_ROUTE}>
+              <button className="button-secondary">Кіру</button>
+            </Link>
+          </div>
+        )}
       </header>
     </div>
   );
 }
 
-
 export default Header;
-
-
-

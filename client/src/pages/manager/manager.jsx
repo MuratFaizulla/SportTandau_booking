@@ -38,7 +38,7 @@ const Manager = () => {
         setFilteredReservations(response.data);
         setLoading(false);
       } catch (error) {
-        setError(error.response.data.error);
+        // setError(error.response.data.error);
         setLoading(false);
       }
     };
@@ -70,10 +70,29 @@ const Manager = () => {
   if (loading) return <div className="loading">Загрузка...</div>;
   if (error) return <div className="error">Ошибка: {error}</div>;
 
+  // Проверяем, если массив бронирований пустой
+  if (filteredReservations.length === 0) {
+    return (
+      <div className="manager-container">
+        <button onClick={handleLogout} className="logout-button">Выйти из системы</button>
+        <h2 className='field_title'>{user.username} алаңына арналған брондар</h2>
+        <input
+          type="text"
+          placeholder="Поиск по пользователю"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <p>Нет доступных бронирований.</p>
+      </div>
+    );
+  }
+  // console.log(
+  //   Object.keys(groupedReservations)
+  //     .sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')))
+  // );
   return (
     <div className="manager-container">
-            <button onClick={handleLogout} className="logout-button">Выйти из системы</button>
-
+      <button onClick={handleLogout} className="logout-button">Выйти из системы</button>
       <h2 className='field_title'>{user.username} алаңына арналған брондар</h2>
       <input
         type="text"
@@ -81,7 +100,9 @@ const Manager = () => {
         value={searchTerm}
         onChange={handleSearch}
       />
-      {Object.keys(groupedReservations).map(date => (
+      {Object.keys(groupedReservations)
+  .sort((a, b) => new Date(a.split('.').reverse().join('-')) - new Date(b.split('.').reverse().join('-')))
+  .map(date => (
         <div key={date} className="date-block">
           <h3>{date}</h3>
           <table className="reservation-table">
@@ -96,19 +117,18 @@ const Manager = () => {
               </tr>
             </thead>
             <tbody>
-            {groupedReservations[date].sort((a, b) => {
-            return a.startTime.localeCompare(b.startTime);
-            }).map(reservation => (
-            <tr key={reservation._id}>
-            <td>{reservation.userId.username}</td>
-            <td>{reservation.userId.email}</td>
-            <td>{new Date(reservation.date).toLocaleDateString()}</td>
-            <td>{reservation.startTime} - {reservation.endTime}</td>
-            <td>{} </td>
-            <td><button onClick={() => handleDeleteReservation(reservation._id)} className="cancel-button">Отменить</button></td>
-             </tr>
+              {groupedReservations[date].sort((a, b) => {
+                return a.startTime.localeCompare(b.startTime);
+              }).map(reservation => (
+                <tr key={reservation._id}>
+                  <td>{reservation.userId.username}</td>
+                  <td>{reservation.userId.email}</td>
+                  <td>{new Date(reservation.date).toLocaleDateString()}</td>
+                  <td>{reservation.startTime} - {reservation.endTime}</td>
+                  <td>{} </td>
+                  <td><button onClick={() => handleDeleteReservation(reservation._id)} className="cancel-button">Отменить</button></td>
+                </tr>
               ))}
-
             </tbody>
           </table>
         </div>

@@ -19,7 +19,7 @@
 .footer-bottom {
   width: 1200px;
   margin: 0 auto;
-  padding-top: 24px;
+  /* padding-top: 24px; */
   display: flex;
   justify-content: flex-end;
 }

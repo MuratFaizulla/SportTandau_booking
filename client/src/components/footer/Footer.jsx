@@ -12,11 +12,11 @@ function Footer() {
       <div className="footer-top">
         <div className="footer-part">
           <h2 className="footer-logo">SportTandau</h2>
-          <ul className="footer-link-list">
+          {/* <ul className="footer-link-list">
             <li className="footer-link-item">Басты бет</li>
             <li className="footer-link-item">Ойын алаңы</li>
             <li className="footer-link-item">Біз туралы</li>
-          </ul>
+          </ul> */}
         </div>
         <div className="footer-part">
           <div className="footer-social-list">
@@ -48,7 +48,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>2024 &copy; Все права защищены</p>
+        <p>2024 &copy; Барлық құқықтар сақталған</p>
       </div>
     </footer>
 
