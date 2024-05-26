@@ -8,14 +8,17 @@ import {
   deleteReservationById,
   getReservationsByUserId,
   getReservationsByFieldId,
+  getAllAdminReservations,
   
 } from '../controllers/playground.js';
+
 
 // Создание бронирования
 router.post('/', createReservation);
 
 // Получение списка бронирований
-router.get('/', getAllReservations);
+router.get('/admin', getAllReservations);
+router.get('/', getAllAdminReservations);
 
 // Получение информации о бронировании по ID
 router.get('/v1/:id', getReservationById);

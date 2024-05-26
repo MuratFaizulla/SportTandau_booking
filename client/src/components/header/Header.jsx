@@ -17,10 +17,9 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
-    logout(); // Вызываем функцию logout при клике на кнопку
+    logout(); 
   };
 
-  // Функция для автоматического закрытия меню через 5 секунд
   const autoCloseMenu = () => {
     setTimeout(() => {
       setOpen(false);
@@ -40,12 +39,12 @@ const Header = () => {
         {user ? (
           <div className='avatar'>
             <img
-              src={avatar}
+              src={user.img || avatar}
               alt='user'
               className="user-avatar"
               onClick={() => {
                 setOpen(!open);
-                autoCloseMenu(); // Запускаем автоматическое закрытие меню
+                autoCloseMenu();
               }}
             />
             <p>{user.username}</p>

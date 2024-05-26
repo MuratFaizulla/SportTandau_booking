@@ -2,42 +2,103 @@ import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [isManager, setIsManager] = useState(false);
+  const [fields, setFields] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [resultMessage, setResultMessage] = useState("");
+
+  useEffect(() => {
+    const fetchFields = async () => {
+      try {
+        const res = await axios.get("/fields"); // Обновите URL на тот, который используется в вашем проекте
+        setFields(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    };
+
+    fetchFields();
+  }, []);
 
   const handleChange = (e) => {
-    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    const { id, value, type, checked } = e.target;
+    setInfo((prev) => ({
+      ...prev,
+      [id]: type === "checkbox" ? checked : value,
+    }));
+    if (id === "isManager") {
+      setIsManager(checked);
+    }
+  };
+
+  const handleFieldChange = (e) => {
+    const { value } = e.target;
+    setInfo((prev) => ({
+      ...prev,
+      fieldId: value,
+    }));
+    // console.log("Selected Field ID:", value); 
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "upload");
-    try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/lamadev/image/upload",
-        data
-      );
+    if (file) {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "upload");
+      try {
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dsw3iy3rf/image/upload",
+          data
+        );
+        const { url } = uploadRes.data;
 
-      const { url } = uploadRes.data;
+        const newUser = {
+          ...info,
+          img: url,
+          manager: {
+            value: isManager,
+            fieldId: isManager ? info.fieldId : null,
+          },
+        };
 
+        await axios.post("/auth/register", newUser);
+        console.log("Пайдаланушы сәтті тіркелді:", newUser);
+        setResultMessage("Пайдаланушы сәтті тіркелді.");
+      } catch (err) {
+        console.log(err);
+        setResultMessage("Пайдаланушыны тіркеу кезінде қате орын алды.");
+      }
+    } else {
+      // Если файл не выбран, продолжить без фотографии
       const newUser = {
         ...info,
-        img: url,
+        img: "",
+        manager: {
+          value: isManager,
+          fieldId: isManager ? info.fieldId : null,
+        },
       };
 
-      await axios.post("/auth/register", newUser);
-    } catch (err) {
-      console.log(err);
+      try {
+        await axios.post("/auth/register", newUser);
+        console.log("Пайдаланушы сәтті тіркелді:", newUser);
+        setResultMessage("Пайдаланушы сәтті тіркелді.");
+      } catch (err) {
+        console.log(err);
+        setResultMessage("Пайдаланушыны тіркеу кезінде қате орын алды.");
+      }
     }
   };
 
-  console.log(info);
   return (
     <div className="new">
       <Sidebar />
@@ -61,7 +122,7 @@ const New = ({ inputs, title }) => {
             <form>
               <div className="formInput">
                 <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  Сурет: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
                   type="file"
@@ -79,11 +140,31 @@ const New = ({ inputs, title }) => {
                     type={input.type}
                     placeholder={input.placeholder}
                     id={input.id}
+                    value={info[input.id] || ""}
                   />
                 </div>
               ))}
-              <button onClick={handleClick}>Send</button>
+
+              {isManager && (
+                <div className="formInput">
+                  <label htmlFor="fieldId">Поле</label>
+                  <select id="fieldId" onChange={handleFieldChange} value={info.fieldId || ""}>
+                    {loading ? (
+                      <option>Загрузка...</option>
+                    ) : (
+                      fields.map((field) => (
+                        <option key={field._id} value={field._id}>
+                          {field.name}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                </div>
+              )}
+
+              <button onClick={handleClick}>Жіберу</button>
             </form>
+            {resultMessage && <p>{resultMessage}</p>}
           </div>
         </div>
       </div>

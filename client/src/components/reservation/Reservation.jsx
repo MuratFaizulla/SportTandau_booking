@@ -164,8 +164,8 @@ function Reservation() {
       </div>
 
       <div className="article-part">
-        <div className="button-container">
-          <button className="btn btn-primary" onClick={handleClick}>
+        <div className="btn-primary">
+          <button className="btn" onClick={handleClick}>
             Қазір брондаңыз!
           </button>
         </div>

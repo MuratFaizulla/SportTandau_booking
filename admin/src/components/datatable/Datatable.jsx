@@ -9,7 +9,7 @@ import axios from "axios";
 const Datatable = ({columns}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  const [list, setList] = useState();
+  const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`);
 
   useEffect(() => {
@@ -26,19 +26,19 @@ const Datatable = ({columns}) => {
   const actionColumn = [
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Әрекет",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>  
+              <div className="viewButton">Көру</div>
             </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}
             >
-              Delete
+              Өшіру
             </div>
           </div>
         );
@@ -50,14 +50,14 @@ const Datatable = ({columns}) => {
       <div className="datatableTitle">
         {path}
         <Link to={`/${path}/new`} className="link">
-          Add New
+        Жаңа қосу
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={list}
         columns={columns.concat(actionColumn)}
-        pageSize={9}
+        pageSize={12}
         rowsPerPageOptions={[9]}
         checkboxSelection
         getRowId={(row) => row._id}
@@ -67,3 +67,4 @@ const Datatable = ({columns}) => {
 };
 
 export default Datatable;
+// {`/users/${params.row._id}`} 

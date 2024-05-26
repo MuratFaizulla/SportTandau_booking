@@ -9,8 +9,8 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
-import NewHotel from "./pages/newHotel/NewHotel";
+import { bookingColumns, fieldColumns, userColumns } from "./datatablesource";
+import NewHotel from "./pages/newField/NewField";
 import NewRoom from "./pages/newRoom/NewRoom";
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <New inputs={userInputs} title="Add New User" />
+                    <New inputs={userInputs} title="Жаңа пайдаланушы қосу" />
                   </ProtectedRoute>
                 }
               />
@@ -71,12 +71,12 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={hotelColumns} />
+                    <List columns={fieldColumns} />
                   </ProtectedRoute>
                 }
               />
               <Route
-                path=":productId"
+                path=":fieldsId"
                 element={
                   <ProtectedRoute>
                     <Single />
@@ -92,17 +92,17 @@ function App() {
                 }
               />
             </Route>
-            <Route path="playgrounds">
+            <Route path="bookings">
               <Route
                 index
                 element={
                   <ProtectedRoute>
-                    <List columns={roomColumns} />
+                    <List columns={bookingColumns} />
                   </ProtectedRoute>
                 }
               />
               <Route
-                path=":productId"
+                path=":bookingsId"
                 element={
                   <ProtectedRoute>
                     <Single />

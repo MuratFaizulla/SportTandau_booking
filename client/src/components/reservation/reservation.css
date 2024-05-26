@@ -106,7 +106,7 @@ hr {
 .red {
   color: red;
 }
-.button-container {
+.btn-primary {
   display: flex;
   justify-content: flex-end;
   width: 88%;

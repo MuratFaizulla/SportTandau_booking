@@ -41,59 +41,59 @@ const Sidebar = () => {
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li> */}
-          <p className="title">LISTS</p>
+          <p className="title">ТІЗІМДЕР</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Пользователь</span>
+              <span>Пайдаланушылар</span>
             </li>
           </Link>
           <Link to="/fields" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Площадки</span>
+              <span>Ойын алаңдары</span>
             </li>
           </Link>
-          <Link to="/playgrounds" style={{ textDecoration: "none" }}>
+          <Link to="/bookings" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardIcon className="icon" />
-              <span>Поле</span>
+              <span>Брондар</span>
             </li>
           </Link>
           {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
           </li> */}
-          <p className="title">USEFUL</p>
+          <p className="title">ПАЙДАЛЫ</p>
           <li>
             <InsertChartIcon className="icon" />
             <span>Статус</span>
           </li>
           <li>
             <NotificationsNoneIcon className="icon" />
-            <span>Уведомления</span>
+            <span>Хабарландырулар</span>
           </li>
           <p className="title">SERVICE</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>Здоровье системы</span>
+            <span>Жүйе денсаулығы</span>
           </li>
           <li>
             <PsychologyOutlinedIcon className="icon" />
-            <span>Журналы</span>
+            <span>Журналдар</span>
           </li>
           <li>
             <SettingsApplicationsIcon className="icon" />
-            <span>Настройки</span>
+            <span>Параметрлер</span>
           </li>
-          <p className="title">USER</p>
+          <p className="title">ПАЙДАЛАНУШЫ</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Профиль</span>
           </li>
           <li>
             <ExitToAppIcon className="icon" />
-            <span  onClick={handleLogout }>Выйти</span>
+            <span  onClick={handleLogout }>Шығу</span>
           </li>
         </ul>
       </div>

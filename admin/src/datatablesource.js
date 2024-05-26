@@ -1,8 +1,8 @@
 export const userColumns = [
   { field: "_id", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
+    field: "username",
+    headerName: "Пайдаланушы",
     width: 230,
     renderCell: (params) => {
       return (
@@ -21,62 +21,111 @@ export const userColumns = [
 
   {
     field: "isAdmin",
-    headerName: "Admin",
+    headerName: "Админ",
     width: 100,
   },
   {
-    field: "city",
-    headerName: "City",
+    field: "managerValue",
+    headerName: "Менеджер",
     width: 100,
+    renderCell: (params) => {
+      const manager = params.row.manager;
+      if (manager) {
+        return <span>{manager.value.toString()}</span>;
+      } else {
+        return <span>N/A</span>; // или другое сообщение об ошибке
+      }
+    },
   },
+  
   {
-    field: "phone",
-    headerName: "Phone",
-    width: 100,
+    field: "managerFieldId",
+    headerName: "Менеджердің ойың алаңы ID",
+    width: 250,
+    renderCell: (params) => {
+      const manager = params.row.manager;
+      if (manager) {
+        return <span>{manager.fieldId || 'Жоқ'}</span>;
+      } else {
+        return <span>N/A</span>; // или другое сообщение об ошибке
+      }
+    },
   },
+  
 ];
 
-export const hotelColumns = [
+export const fieldColumns = [
   { field: "_id", headerName: "ID", width: 100 },
   {
     field: "name",
-    headerName: "Name",
+    headerName: "Ойың алаңы атауы",
     width: 300,
   },
   {
     field: "type",
-    headerName: "Type",
+    headerName: "Түрі",
     width: 100,
   },
   {
     field: "address",
-    headerName: "Addres",
+    headerName: "Мекенжайы",
     width: 350,
   },
   {
     field: "price",
-    headerName: "Price",
+    headerName: "Бағасы",
     width: 100,
   },
   {
     field: "city",
-    headerName: "City",
+    headerName: "Қала",
     width: 100,
   },
 ];
 
-export const roomColumns = [
+
+export const bookingColumns = [
   { field: "_id", headerName: "ID", width: 200 },
- 
+
   
   {
-    field: "booking",
-    headerName: "Booking",
-    width: 400,
+    field: "username",
+    headerName: "Пайдаланушы аты",
+    width: 200,
   },
   {
-    field: "aa",
-    headerName: " aa",
+    field: "name",
+    headerName: "Алаң атауы",
+    width: 200,
+  },
+  {
+    field: "date",
+    headerName: " Күні",
+    width: 100,
+    renderCell: (params) => {
+      const dateValue = params.value;
+      if (dateValue) {
+        const dateOnly = dateValue.split('T')[0];
+        return <span>{dateOnly}</span>;
+      } else {
+        return <span>N/A</span>; // или другое сообщение об ошибке
+      }
+    },
+  },
+  
+  {
+    field: "startTime",
+    headerName: " Басталуы",
+    width: 100,
+  },
+  {
+    field: "endTime",
+    headerName: " Аяқталуы",
+    width: 100,
+  },
+  {
+    field: "price",
+    headerName: " Бағасы",
     width: 100,
   },
 ];

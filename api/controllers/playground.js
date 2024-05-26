@@ -1,22 +1,8 @@
-  // import Field from "../models/Field.js";
 import Reservation from "../models/Playground.js";
-
-// export const createReservation = async (req, res) => {
-//   try {
-//     const reservation = new Reservation(req.body);
-//     await reservation.save();
-//     res.status(201).send(reservation);
-//   } catch (error) {
-//     res.status(400).send(error);
-//   }
-// };
-
-
 
 export const createReservation = async (req, res) => {
   try {
     const newReservationData = req.body;
-
     // Проверяем, существуют ли уже бронирования на это время
     const existingReservation = await Reservation.findOne({
       fieldId: newReservationData.fieldId,
@@ -28,7 +14,6 @@ export const createReservation = async (req, res) => {
         }
       ]
     });
-
     // Если бронирование уже существует, возвращаем ошибку
     if (existingReservation) {
       return res.status(400).send("Бұл уақыт аралығы әлдеқашан брондалған.");
@@ -44,9 +29,6 @@ export const createReservation = async (req, res) => {
 };
 
 
-
-
-// Получение списка бронирований
 export const getAllReservations = async (req, res) => {
   try {
     const reservations = await Reservation.find({});
@@ -55,7 +37,35 @@ export const getAllReservations = async (req, res) => {
     res.status(500).send(error);4
   }
 };
+// Получение списка бронирований
 
+export const getAllAdminReservations = async (req, res) => {
+  try {
+    // Получаем список бронирований, заполняя связанные объекты
+    const reservations = await Reservation.find({})
+      .populate({
+        path: 'fieldId',
+        select: 'name price',
+      })
+      .populate({
+        path: 'userId',
+        select: 'username email',
+      });
+    // Преобразуем каждое бронирование в формат, соответствующий структуре таблицы
+    const formattedReservations = reservations.map(reservation => ({
+      _id: reservation._id,
+      username: reservation.userId.username,
+      name: reservation.fieldId.name,
+      price: reservation.fieldId.price,
+      date: reservation.date,
+      startTime: reservation.startTime,
+      endTime: reservation.endTime,
+    }));
+    res.send(formattedReservations);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 export const getReservationById = async (req, res) => {
   try {
@@ -72,7 +82,6 @@ export const getReservationById = async (req, res) => {
     res.status(500).json({ error: 'Failed to get reservation' });
   }
 };
-
 
 
 // Обновление информации о бронировании по ID
@@ -149,23 +158,3 @@ export const getReservationsByFieldId = async (req, res) => {
     res.status(500).json({ error: 'Failed to get reservations' });
   }
 };
-
-
-// export const getReservationsByUserId = async (req, res) => {
-//   try {
-//     const { userId } = req.params;
-
-//     const reservations = await Reservation.find({ userId })
-//     .populate('userId')
-//       .populate('venueId'); // Populate venueId if needed
-
-//     if (!reservations.length) {
-//       return res.status(404).json({ error: `No reservations found for user with ID: ${userId}` }); // More specific error
-//     }
-
-//     res.status(200).json(reservations);
-//   } catch (error) {
-//     console.error('Error getting reservations by user ID:', error);
-//     res.status(500).json({ error: 'Internal server error' }); // Generic error for unexpected issues
-//   }
-// };

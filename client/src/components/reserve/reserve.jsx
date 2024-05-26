@@ -15,7 +15,7 @@ const DateAndTimeSelector = ({ fieldId }) => {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [error, setError] = useState(null);
   
-  const { data } = useFetch("/bookings/");
+  const { data } = useFetch("/bookings/admin");
 
   useEffect(() => {
     if (data) {
@@ -75,7 +75,7 @@ const DateAndTimeSelector = ({ fieldId }) => {
           setSelectedEndTime("");
           setSelectedSlot(null);
           // Обновляем данные о бронированиях только после успешного бронирования
-          fetch("/bookings/")
+          fetch("/bookings/admin")
             .then((response) => response.json())
             .then((data) => {
               setBookings(data);

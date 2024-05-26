@@ -1,124 +1,52 @@
 export const userInputs = [
   {
     id: "username",
-    label: "Username",
+    label: "Пайдаланушы аты",
     type: "text",
-    placeholder: "john_doe",
+    placeholder: "",
   },
   {
     id: "email",
     label: "Email",
     type: "email",
-    placeholder: "john_doe@gmail.com",
+    placeholder: "qwer@gmail.com",
   },
   {
     id: "phone",
-    label: "Phone",
+    label: "Телефон",
     type: "text",
-    placeholder: "+1 234 567 89",
+    placeholder: "+7 777 000 0000",
   },
   {
     id: "password",
-    label: "Password",
+    label: "Құпия сөз",
     type: "password",
   },
   {
     id: "country",
-    label: "Country",
+    label: "Ел",
     type: "text",
-    placeholder: "USA",
+    placeholder: "Kazakhstan",
   },
   {
     id: "city",
-    label: "City",
+    label: "Қала",
     type: "text",
-    placeholder: "USA",
+    placeholder: "Astana",
+  },
+  {
+    id: "isManager",
+    label: "Менеджер true",
+    type: "checkbox",
+  },
+  {
+    id: "fieldId",
+    label: "Ойын алаңы ID",
+    type: "text",
+    placeholder: "Enter Field ID",
   },
 ];
 
-export const productInputs = [
-  {
-    id: 1,
-    label: "Title",
-    type: "text",
-    placeholder: "Apple Macbook Pro",
-  },
-  {
-    id: 2,
-    label: "Description",
-    type: "text",
-    placeholder: "Description",
-  },
-  {
-    id: 3,
-    label: "Category",
-    type: "text",
-    placeholder: "Computers",
-  },
-  {
-    id: 4,
-    label: "Price",
-    type: "text",
-    placeholder: "100",
-  },
-  {
-    id: 5,
-    label: "Stock",
-    type: "text",
-    placeholder: "in stock",
-  },
-];
-
-export const hotelInputs = [
-  {
-    id: "name",
-    label: "Name",
-    type: "text",
-    placeholder: "My Hotel",
-  },
-  {
-    id: "type",
-    label: "Type",
-    type: "text",
-    placeholder: "hotel",
-  },
-  {
-    id: "city",
-    label: "City",
-    type: "text",
-    placeholder: "New York",
-  },
-  {
-    id: "address",
-    label: "Address",
-    type: "text",
-    placeholder: "elton st, 216",
-  },
-  {
-    id: "distance",
-    label: "Distance from City Center",
-    type: "text",
-    placeholder: "500",
-  },
-  {
-    id: "title",
-    label: "Title",
-    type: "text",
-    placeholder: "The best Hotel",
-  },
-  {
-    id: "desc",
-    label: "Description",
-    type: "text",
-    placeholder: "description",
-  },
-  {
-    id: "cheapestPrice",
-    label: "Price",
-    type: "text",
-    placeholder: "100",
-  },
-];
 
 export const roomInputs = [
   {
@@ -144,5 +72,108 @@ export const roomInputs = [
     label: "Max People",
     type: "number",
     placeholder: "2",
+  },
+];
+export const fieldInputs = [
+  {
+    id: "name",
+    label: "Ойын алаң атауы",
+    type: "text",
+    placeholder: "Менің ойың алаңым",
+  },
+  {
+    id: "type",
+    label: "Ойын аланның түрі",
+    type: "text",
+    placeholder: "Футбол, Баскетбол, Волейбол, Теннис",
+  },
+  {
+    id: "city",
+    label: "Қала",
+    type: "text",
+    placeholder: "Астана, Алматы, Шымкент",
+  },
+  {
+    id: "address",
+    label: "Мекенжай",
+    type: "text",
+    placeholder: "Мекенжайды енгізіңіз",
+  },
+  {
+    id: "rating",
+    label: "Рейтинг",
+    type: "number",
+    placeholder: "0",
+  },
+  {
+    id: "size",
+    label: "Өлшемі",
+    type: "text",
+    placeholder: "18 х 24",
+  },
+  {
+    id: "coating",
+    label: "Покрытие",
+    type: "text",
+    placeholder: "Мысалы, шөп, жасанды шөп",
+  },
+  {
+    id: "premise",
+    label: "Помещение",
+    type: "text",
+    placeholder: "Мысалы, ашық, жабық",
+  },
+  {
+    id: "inventory",
+    label: "Инвентарь",
+    type: "text",
+    placeholder: "Ракеткалар мен доп",
+  },
+  // {
+  //   id: "playgrounds",
+  //   label: "Playgrounds",
+  //   type: "text",
+  //   placeholder: "Playground details",
+  // },
+  {
+    id: "price",
+    label: "Бағасы",
+    type: "number",
+    placeholder: "100",
+  },
+  {
+    id: "shower",
+    label: "Душ",
+    type: "checkbox",
+  },
+  {
+    id: "parking",
+    label: "Тұрақ",
+    type: "checkbox",
+  },
+  {
+    id: "shop",
+    label: "Дүкен",
+    type: "checkbox",
+  },
+  {
+    id: "lockerRoom",
+    label: "Киім ауыстыратын орын",
+    type: "checkbox",
+  },
+  {
+    id: "stands",
+    label: "Көрермендерге арналған мінбелер",
+    type: "checkbox",
+  },
+  {
+    id: "lighting",
+    label: "Жарықтандыру",
+    type: "checkbox",
+  },
+  {
+    id: "security",
+    label: "Қауіпсіздік",
+    type: "checkbox",
   },
 ];
