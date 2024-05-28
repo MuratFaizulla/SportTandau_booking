@@ -22,12 +22,12 @@ export const userInputs = [
     label: "Құпия сөз",
     type: "password",
   },
-  {
-    id: "country",
-    label: "Ел",
-    type: "text",
-    placeholder: "Kazakhstan",
-  },
+  // {
+  //   id: "country",
+  //   label: "Ел",
+  //   type: "text",
+  //   placeholder: "Kazakhstan",
+  // },
   {
     id: "city",
     label: "Қала",

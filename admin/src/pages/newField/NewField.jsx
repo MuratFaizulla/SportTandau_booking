@@ -43,21 +43,21 @@ const NewField = () => {
     } catch (err) {
       console.log(err);
       setResultMessage("Ойын алаңың тіркеу кезінде қате орын алды.");
-
     }
   };
+
   console.log("Info:", info);
 
   return (
-    <div className="new">
+    <div className="newField">
       <Sidebar />
-      <div className="newContainer">
+      <div className="newFieldContainer">
         <Navbar />
-        <div className="top">
+        <div className="newFieldTop">
           <h1>Жаңа ойын аланың қосу</h1>
         </div>
-        <div className="bottom">
-          <div className="left">
+        <div className="newFieldBottom">
+          <div className="newFieldLeft">
             <img
               src={
                 files.length
@@ -67,11 +67,11 @@ const NewField = () => {
               alt=""
             />
           </div>
-          <div className="right">
+          <div className="newFieldRight">
             <form>
-              <div className="formInput">
+              <div className="newFieldFormInput">
                 <label htmlFor="file">
-                Сурет: <DriveFolderUploadOutlinedIcon className="icon" />
+                Сурет: <DriveFolderUploadOutlinedIcon className="newFieldIcon" />
                 </label>
                 <input
                   type="file"
@@ -84,7 +84,7 @@ const NewField = () => {
 
               {fieldInputs.map((input) => (
                 <div
-                  className={`formInput ${input.type === 'checkbox' ? 'checkboxInput' : ''}`}
+                  className={`newFieldFormInput ${input.type === 'checkbox' ? 'checkboxInput' : ''}`}
                   key={input.id}
                 >
                   <label htmlFor={input.id}>{input.label}</label>

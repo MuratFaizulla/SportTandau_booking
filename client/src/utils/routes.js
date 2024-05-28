@@ -11,13 +11,15 @@ import {
     LOGIN_PAGE_ROUTE,
     REGISTER_PAGE_ROUTE,
     USER_PAGE_ROUTE,
-    MANAGER_PAGE_ROUTE,  
+    MANAGER_PAGE_ROUTE,
+    MYBOOKINGS_PAGE_ROUTE,  
 } from "./consts";
 import Login from "../pages/login/login";
 import Register from "../pages/register/register";
 import  Profile  from "../pages/profile/Profile";
 import About from "../pages/about/AboutPage";
 import Manager from "../pages/manager/manager";
+import Mybookings from "../pages/mybookings/Mybookings";
 
 
 export const routes = [
@@ -52,6 +54,10 @@ export const routes = [
     {
         path: MANAGER_PAGE_ROUTE,
         element:Manager,
+    },
+    {
+        path: MYBOOKINGS_PAGE_ROUTE,
+        element:Mybookings,
     },
     {
         path: "*",

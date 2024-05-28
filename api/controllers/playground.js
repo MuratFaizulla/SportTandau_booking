@@ -38,10 +38,8 @@ export const getAllReservations = async (req, res) => {
   }
 };
 // Получение списка бронирований
-
 export const getAllAdminReservations = async (req, res) => {
   try {
-    // Получаем список бронирований, заполняя связанные объекты
     const reservations = await Reservation.find({})
       .populate({
         path: 'fieldId',
@@ -51,21 +49,30 @@ export const getAllAdminReservations = async (req, res) => {
         path: 'userId',
         select: 'username email',
       });
-    // Преобразуем каждое бронирование в формат, соответствующий структуре таблицы
-    const formattedReservations = reservations.map(reservation => ({
-      _id: reservation._id,
-      username: reservation.userId.username,
-      name: reservation.fieldId.name,
-      price: reservation.fieldId.price,
-      date: reservation.date,
-      startTime: reservation.startTime,
-      endTime: reservation.endTime,
-    }));
-    res.send(formattedReservations);
+
+    const formattedReservations = reservations.map(reservation => {
+      const username = reservation.userId ? reservation.userId.username : 'Unknown';
+      const name = reservation.fieldId ? reservation.fieldId.name : 'Unknown';
+      const price = reservation.fieldId ? reservation.fieldId.price : 0;
+
+      return {
+        _id: reservation._id,
+        username,
+        name,
+        price,
+        date: reservation.date,
+        startTime: reservation.startTime,
+        endTime: reservation.endTime,
+      };
+    });
+
+    res.json(formattedReservations);
   } catch (error) {
-    res.status(500).send(error);
+    console.error("Error fetching reservations:", error);
+    res.status(500).send("Error fetching reservations");
   }
 };
+
 
 export const getReservationById = async (req, res) => {
   try {

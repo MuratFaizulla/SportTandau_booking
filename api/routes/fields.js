@@ -22,7 +22,7 @@ router.put("/:id",verifyAdmin,updateField);
 router.delete("/:id",deleteField);
 
 // //GET
-router.get("/find/:id", getField);
+router.get("/v1/:id", getField);
 
 // //GET ALL
 router.get("/",getFields);

@@ -6,6 +6,7 @@ import {
   AREA_PAGE_ROUTE,
   HOME_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
+  MYBOOKINGS_PAGE_ROUTE,
   REGISTER_PAGE_ROUTE,
   USER_PAGE_ROUTE
 } from '../../utils/consts';
@@ -52,7 +53,7 @@ const Header = () => {
               <div className='custom-div'>
                 <ul>
                   <li onClick={() => { window.location.href = USER_PAGE_ROUTE; }}>Менің профилім</li>
-                  <li onClick={() => { window.location.href = ABOUT_PAGE_ROUTE; }}>Менің брондарым</li>
+                  <li onClick={() => { window.location.href = MYBOOKINGS_PAGE_ROUTE; }}>Менің брондарым</li>
                   <li onClick={handleLogout}>Шығу</li>
                 </ul>
               </div>

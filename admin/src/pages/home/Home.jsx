@@ -20,10 +20,10 @@ const Home = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart title="Последние 6 месяцев (выручка)" aspect={2 / 1} />
+          <Chart title="Соңғы 6 ай (түсім)" aspect={2 / 1} />
         </div>
         <div className="listContainer">
-          <div className="listTitle">Последние транзакции</div>
+          <div className="listTitle">Соңғы транзакциялар</div>
           <Table />
         </div>
       </div>

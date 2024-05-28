@@ -1,48 +1,51 @@
-.new {
+.newField {
   width: 100%;
   display: flex;
 }
 
-.newContainer {
+.newFieldContainer {
   flex: 6;
   padding: 20px;
 }
 
-.top {
+.newFieldTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.bottom {
+.newFieldBottom {
   display: flex;
   margin-top: 20px;
 }
 
-.left,
-.right {
+.newFieldLeft,
+.newFieldRight {
   flex: 1;
 }
 
-.left {
+.newFieldLeft {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
   img {
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 10px;
   }
 }
 
-.right {
+.newFieldRight {
   form {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 
-    .formInput {
+    .newFieldFormInput {
       width: calc(50% - 20px);
       display: flex;
       flex-direction: column;
@@ -90,7 +93,7 @@
   }
 }
 
-.icon {
+.newFieldIcon {
   cursor: pointer;
   margin-left: 5px;
   color: #007bff;

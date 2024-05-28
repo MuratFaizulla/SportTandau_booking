@@ -15,9 +15,9 @@ const Widget = ({ type }) => {
   switch (type) {
     case "user":
       data = {
-        title: "ПОЛЬЗОВАТЕЛИ",
+        title: "ПАЙДАЛАНУШЫЛАР",
         isMoney: false,
-        link: "See all users",
+        link: "Барлық пайдаланушыларды қараңыз",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -31,9 +31,9 @@ const Widget = ({ type }) => {
       break;
     case "order":
       data = {
-        title: "ЗАКАЗЫ",
+        title: "Тапсырыстар",
         isMoney: false,
-        link: "View all orders",
+        link: "Барлық тапсырыстарды қарау",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -47,9 +47,9 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "ЗАРАБОТОК",
+        title: "ТАБЫС",
         isMoney: true,
-        link: "View net earnings",
+        link: "Таза табысты көру",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -60,9 +60,9 @@ const Widget = ({ type }) => {
       break;
     case "balance":
       data = {
-        title: "БАЛАНС",
+        title: "Теңгерім",
         isMoney: true,
-        link: "See details",
+        link: "Толығырақ",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"

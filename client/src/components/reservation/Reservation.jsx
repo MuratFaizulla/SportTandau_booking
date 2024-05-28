@@ -23,7 +23,7 @@ function Reservation() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-  const { data, loading, error } = useFetch(`/fields/find/${id}`);
+  const { data, loading, error } = useFetch(`/fields/v1/${id}`);
   if (loading) {
     return <Loader />;
   }

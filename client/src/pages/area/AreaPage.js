@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Area.css';
 import FieldItem from '../../components/fieldcard/FieldItem';
-import Filter from '../../components/filter/Filter';
+// import Filter from '../../components/filter/Filter';
 import Sorttype from '../../components/sorting/Sorting';
 
 const Area = () => {
@@ -15,7 +15,7 @@ const Area = () => {
 
     return (
         <div className='AreaList'>
-            <Filter />
+            {/* <Filter /> */}
             <div className='AreaItem'>
                 <Sorttype onDataReceived={onDataReceived} />
                 {isLoading ? ( 

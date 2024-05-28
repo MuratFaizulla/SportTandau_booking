@@ -43,20 +43,20 @@ const Login = () => {
       <div className="lContainer">
         <input
           type="text"
-          placeholder="username"
+          placeholder="Пайдаланушы аты"
           id="username"
           onChange={handleChange}
           className="lInput"
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Құпия сөз"
           id="password"
           onChange={handleChange}
           className="lInput"
         />
         <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
+        Кіру
         </button>
         {error && <span>{error.message}</span>}
       </div>

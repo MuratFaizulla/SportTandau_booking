@@ -6,6 +6,7 @@ export const  LOGIN_PAGE_ROUTE="/login";
 export const  REGISTER_PAGE_ROUTE="/signup";
 export const  USER_PAGE_ROUTE="/profile";
 export const  MANAGER_PAGE_ROUTE="/managerpage";
+export const  MYBOOKINGS_PAGE_ROUTE="/mybookings";
 
 
 

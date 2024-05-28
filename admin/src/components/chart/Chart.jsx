@@ -9,11 +9,11 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Январь", Total: 1200 },
-  { name: "Февраль", Total: 2100 },
-  { name: "Март", Total: 800 },
-  { name: "Аперль", Total: 1600 },
-  { name: "Май", Total: 900 },
+  { name: "Қаңтар", Total: 1200 },
+  { name: "Ақпан", Total: 2100 },
+  { name: "Наурыз", Total: 800 },
+  { name: "Сәуір", Total: 1600 },
+  { name: "Мамыр", Total: 900 },
   { name: "Маусым", Total: 1700 },
 ];
 
